@@ -35,7 +35,7 @@ public class DatabaseConnection {
 
         try
         {
-            con = DriverManager.getConnection(url,"root","goodluck31675");
+            con = DriverManager.getConnection(url,"root","");
         }
         catch(Exception e)
         {
