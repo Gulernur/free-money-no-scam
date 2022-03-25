@@ -3,6 +3,7 @@ package com.example.freemoneynoscam.controllers;
 import com.example.freemoneynoscam.repositories.DatabaseConnection;
 import com.example.freemoneynoscam.services.ValidateEmailService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,8 @@ import java.sql.DriverManager;
 @Controller
 public class IndexController {
 
+    private ValidateEmailService validate = new ValidateEmailService();
+
     @GetMapping("/")
     public String index(){
         return "index";
@@ -25,9 +28,20 @@ public class IndexController {
         return "many_money";
     }
 
+    @GetMapping("/getSingleEmail")
+    public String getSingleEmail(Model m){
+        m.addAttribute("singleEmail", validate.getSingleEmail());
+        return "index";
+    }
+
+    @GetMapping("/getAllEmails")
+    public String getAllEmails(Model m){
+        m.addAttribute("allEmails", validate.getAllEmails());
+        return "many_money";
+    }
+
     @PostMapping("/test")
     public String test(WebRequest dataFromForm){
-        ValidateEmailService validate = new ValidateEmailService();
 
         System.out.println(dataFromForm.getParameter("email"));
         String email = dataFromForm.getParameter("email");
@@ -41,9 +55,5 @@ public class IndexController {
 
         return "redirect:/";
     }
-
-
-
-
 
 }

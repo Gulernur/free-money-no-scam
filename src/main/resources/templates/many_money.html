@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Success page</title>
+    <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
 </head>
 <body>
 
 <h1>VERY GOOD!!!!</h1>
 <p>FREE MONEY IS COMING TO YOOUUU</p>
+
+<p th:each="email : ${allEmails}">
+    <span th:text="${email}"></span>
+</p>
 
 </body>
 </html>
